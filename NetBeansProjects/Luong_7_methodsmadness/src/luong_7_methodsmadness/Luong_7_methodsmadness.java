@@ -24,24 +24,44 @@ public class Luong_7_methodsmadness extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Drawing Operations Test");
         Group root = new Group();
-        Canvas canvas = new Canvas(300, 250);
+        Canvas canvas = new Canvas(500, 500);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        drawBackground(gc,0,0,300,250);
-        drawRectangles(gc,40,50,60,70);       
+        drawBackground(canvas,gc,0,0,300,250);
+        drawmorebackground(gc);
+        drawRectangles(gc,155,180,60,70);       
         drawCircle(gc);
         drawTriangle(gc);
-        drawmoreRectangles(gc,160,50,60,70);
+        drawmoreRectangles(gc,280,180,60,70);
         drawmoreCircles(gc);
         drawSmile(gc);
         root.getChildren().add(canvas);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-    private void drawBackground(GraphicsContext gc, int x, int y, int w, int h) {
-        gc.setFill(Color.BLUE);
-        gc.fillRect( x , y, w, h);
+      private void drawmorebackground(GraphicsContext gc) {
+          gc.setFill(Color.BLUE);
+          gc.fillRect( 140,160,225,225);
+      }  
+    private void drawBackground(Canvas canvas,GraphicsContext gc, double x, double y, int w, int h) {
+       // gc.setFill(Color.BLUE);
+       // gc.fillRect( x , y, w, h);
+          for (int sx = 0; sx < canvas.getWidth(); sx++) {
+            for (int sy = 0; sy < canvas.getHeight(); sy++) {
+                double dx = sx - x;
+                double dy = sy - y;
+              //  double r = Math.sqrt(dx*dx + dy*dy);
+                double r =Math.sqrt(dx*dx+dy*dy)+sx;
+                double angle = Math.PI / 256 * (3.5*r);
+        
+             int tx = (int) (+dx * Math.cos(angle) - dy * Math.sin(angle) + x / 10)+250;
+                int ty = (int) (+dx * Math.sin(angle) + dy * Math.cos(angle) + y/10)+250;
+            drawlittleCircle(gc, tx,ty);
+        } 
     }
-
+    
+    
+        
+    }
     private void drawRectangles(GraphicsContext drawRectangles, int x, int y, int w, int h) {
         drawRectangles.setFill(Color.ORANGE);
         drawRectangles.fillRect(x, y, w, h);
@@ -50,12 +70,12 @@ public class Luong_7_methodsmadness extends Application {
     private void drawCircle(GraphicsContext gc) {
         gc.setFill(Color.YELLOW);
         gc.setStroke(Color.RED);
-        gc.fillOval(56,70,30,30);
+        gc.fillOval(165,200,30,30);
         
     }
    private void drawTriangle(GraphicsContext gc) {
-     double [] myX = {160,110,130};
-     double [] myY = {155,145,175};
+     double [] myX = {270,220,240};
+     double [] myY = {285,275,305};
      gc.fillPolygon(myX, myY,3);
      gc.setFill(Color.RED);
      gc.setStroke(Color.PURPLE);
@@ -68,17 +88,22 @@ public class Luong_7_methodsmadness extends Application {
      private void drawmoreCircles(GraphicsContext gc) {
        gc.setFill(Color.YELLOW);
        gc.setStroke(Color.RED);
-       gc.fillOval(178,71,30,30);
+       gc.fillOval(296,200,30,30);
    }
-     private void drawCircle(GraphicsContext gc, int x, int y) {
+     private void drawlittleCircle(GraphicsContext gc, double x, double y) {
+           gc.setFill(Color.YELLOWGREEN);
+      gc.setStroke(Color.AQUA);
+      gc.fillOval(x, y, 2, 2);
+     }
+     private void drawCircle(GraphicsContext gc, double x, double y) {
            gc.setFill(Color.DEEPPINK);
       gc.setStroke(Color.AQUA);
       gc.fillOval(x, y, 20, 20);
      }
    private void drawSmile(GraphicsContext gc) {
      
-       double [] Xs = {60,70,80,95,105,115,125,135,145,155,165,175,185};
-       double [] Ys = {200,205,205,205,205,205,205,205,205,205,205,200};
+       double [] Xs = {170,180,190,205,215,225,235,245,255,265,275,285,295};
+       double [] Ys = {330,335,335,335,335,335,335,335,335,335,335,330};
        for (int i = 0; i < 12; i++) {
            drawCircle(gc, (int) Xs[i],(int)Ys[i]);
                    }
@@ -115,6 +140,7 @@ public class Luong_7_methodsmadness extends Application {
                           new double[]{210, 210, 240, 240}, 4);
      
 */
+
 
 
 
