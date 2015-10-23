@@ -20,7 +20,7 @@ public class Luong_7_methodsmadness extends Application {
         launch(args);
     }
  
-    @Override
+     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Drawing Operations Test");
         Group root = new Group();
@@ -58,14 +58,12 @@ public class Luong_7_methodsmadness extends Application {
             drawlittleCircle(gc, tx,ty);
         } 
     }
-    
-    
-        
+           
     }
-    private void drawRectangles(GraphicsContext drawRectangles, int x, int y, int w, int h) {
-        drawRectangles.setFill(Color.ORANGE);
-        drawRectangles.fillRect(x, y, w, h);
-        drawRectangles.setStroke(Color.BLACK);
+    private void drawRectangles(GraphicsContext gc, int x, int y, int w, int h) {
+        gc.setFill(Color.ORANGE);
+        gc.fillRect(x, y, w, h);
+        gc.setStroke(Color.BLACK);
     }
     private void drawCircle(GraphicsContext gc) {
         gc.setFill(Color.YELLOW);
@@ -140,6 +138,7 @@ public class Luong_7_methodsmadness extends Application {
                           new double[]{210, 210, 240, 240}, 4);
      
 */
+
 
 
 
